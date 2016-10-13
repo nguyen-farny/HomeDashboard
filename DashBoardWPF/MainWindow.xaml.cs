@@ -56,7 +56,7 @@ namespace DashBoardWPF
                 jsonString.Wait();
                 dynamic jsonResponse = JsonConvert.DeserializeObject(jsonString.Result);
 
-                rer_grid.ItemsSource = jsonResponse.response.schedules;
+                rer_list.ItemsSource = jsonResponse.response.schedules;
             }
             else
             {

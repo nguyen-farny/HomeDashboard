@@ -6,24 +6,49 @@
         xmlns:local="clr-namespace:DashBoardWPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <Label x:Name="label" Content="Departure "/>
-        <!--<DataGrid Name="rer_grid" HorizontalAlignment="Left" Margin="28,23,0,0" 
-                 AutoGenerateColumns="True" VerticalAlignment="Top" Height="185" Width="451">
-        </DataGrid>-->
-        <DataGrid Name="rer_grid" HorizontalAlignment="Left" Margin="28,23,0,0" 
-                 AutoGenerateColumns="false" VerticalAlignment="Top" Height="185" Width="451">
-            <DataGrid.Columns>
-                <DataGridTemplateColumn Header="Schedules" Width="80" IsReadOnly="True">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <TextBlock Text="{Binding Path=message}" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+    <Grid Margin="10, 10, 10, 10"  ShowGridLines="False">
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="20"/>
+            <RowDefinition  Height="40"/>
+            <RowDefinition  Height="20"/>
+            <RowDefinition  Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
+        </Border>
+        <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
+        </Border>
+        <Border Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
+        </Border>
+        <Border Grid.Column="0"  Grid.Row="1" BorderBrush="YellowGreen" BorderThickness="1">
+        </Border>
+        <Border Grid.Column="1" Grid.Row="1" BorderBrush="YellowGreen" BorderThickness="1">
+        </Border>
+        <Border Grid.Column="2" Grid.Row="1" BorderBrush="YellowGreen" BorderThickness="1">
+        </Border>
+        <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,0,10,0" Text="Line" />
+        <TextBlock Grid.Row="0"  Grid.Column="1" Margin="0,0,10,0" Text="Direction" />
+        <TextBlock Grid.Row="0"  Grid.Column="2" Margin="0,0,10,0" Text="Schedules" />
+        <TextBlock Grid.Row="1"  VerticalAlignment="Center" Grid.Column="0" Margin="0,0,10,0" Text="A" />
+        <TextBlock Grid.Row="1"  VerticalAlignment="Center" Grid.Column="1" Margin="0,0,10,0" Text="Paris" />
+        <ListBox Name="rer_list" HorizontalAlignment="Left" BorderThickness="0"  Grid.Row="1"  Grid.Column="2">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding message}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>
