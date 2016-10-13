@@ -67,7 +67,6 @@
     <Compile Include="Schedule.cs" />
     <Compile Include="Vehicle.cs" />
     <Compile Include="Response.cs" />
-    <Compile Include="VehiculeCollection.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -8,7 +8,22 @@
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <Label x:Name="label" Content="Departure "/>
+        <!--<DataGrid Name="rer_grid" HorizontalAlignment="Left" Margin="28,23,0,0" 
+                 AutoGenerateColumns="True" VerticalAlignment="Top" Height="185" Width="451">
+        </DataGrid>-->
         <DataGrid Name="rer_grid" HorizontalAlignment="Left" Margin="28,23,0,0" 
-                 AutoGenerateColumns="True" VerticalAlignment="Top" Height="185" Width="451"/>
+                 AutoGenerateColumns="false" VerticalAlignment="Top" Height="185" Width="451">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Schedules" Width="80" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Path=message}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

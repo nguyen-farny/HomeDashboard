@@ -27,12 +27,18 @@ namespace DashBoardWPF
         public MainWindow()
         {
             InitializeComponent();
+            //DataGridTextColumn schedules_col = new DataGridTextColumn();
+            //schedules_col.Header = "Schedules";
+
+            //rer_grid.Columns.Add(schedules_col);
 
             //actualize info every 2 sec
             System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
             timer.Tick += GetData;
             timer.Interval = new TimeSpan(0, 0, 2);
             timer.Start();
+
+
         }
         private void GetData(object sender, EventArgs e)
         {
