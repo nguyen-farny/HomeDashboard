@@ -5,43 +5,115 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DashBoardWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="650">
     <Grid Margin="10, 10, 10, 10"  ShowGridLines="False">
         <Grid.RowDefinitions>
             <RowDefinition  Height="20"/>
             <RowDefinition  Height="40"/>
-            <RowDefinition  Height="20"/>
-            <RowDefinition  Height="20"/>
+            <RowDefinition  Height="40"/>
+            <RowDefinition  Height="40"/>
+            <RowDefinition  Height="40"/>
+            <RowDefinition  Height="40"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="40"/>
-            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Border Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
-        </Border>
-        <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
-        </Border>
-        <Border Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
-        </Border>
-        <Border Grid.Column="0"  Grid.Row="1" BorderBrush="YellowGreen" BorderThickness="1">
-        </Border>
-        <Border Grid.Column="1" Grid.Row="1" BorderBrush="YellowGreen" BorderThickness="1">
-        </Border>
-        <Border Grid.Column="2" Grid.Row="1" BorderBrush="YellowGreen" BorderThickness="1">
-        </Border>
-        <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,0,10,0" Text="Line" />
-        <TextBlock Grid.Row="0"  Grid.Column="1" Margin="0,0,10,0" Text="Direction" />
-        <TextBlock Grid.Row="0"  Grid.Column="2" Margin="0,0,10,0" Text="Schedules" />
-        <TextBlock Grid.Row="1"  VerticalAlignment="Center" Grid.Column="0" Margin="0,0,10,0" Text="A" />
-        <TextBlock Grid.Row="1"  VerticalAlignment="Center" Grid.Column="1" Margin="0,0,10,0" Text="Paris" />
-        <ListBox Name="rer_list" HorizontalAlignment="Left" BorderThickness="0"  Grid.Row="1"  Grid.Column="2">
+        <Border Grid.Column="0" BorderBrush="Gray" BorderThickness="1"/>
+        <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="1"/>
+        <Border Grid.Column="2" BorderBrush="Gray" BorderThickness="1"/>
+        <Border Grid.Column="0" Grid.Row="1" BorderBrush="YellowGreen" BorderThickness="1"/>
+        <Border Grid.Column="1" Grid.Row="1" BorderBrush="YellowGreen" BorderThickness="1"/>
+        <Border Grid.Column="2" Grid.Row="1" BorderBrush="YellowGreen" BorderThickness="1"/>
+        <Border Grid.Column="0" Grid.Row="2" BorderBrush="YellowGreen" BorderThickness="1"/>
+        <Border Grid.Column="1" Grid.Row="2" BorderBrush="YellowGreen" BorderThickness="1"/>
+        <Border Grid.Column="2" Grid.Row="2" BorderBrush="YellowGreen" BorderThickness="1"/>
+        <Border Grid.Column="0" Grid.Row="3" BorderBrush="YellowGreen" BorderThickness="1"/>
+        <Border Grid.Column="1" Grid.Row="3" BorderBrush="YellowGreen" BorderThickness="1"/>
+        <Border Grid.Column="2" Grid.Row="3" BorderBrush="YellowGreen" BorderThickness="1"/>
+        <Border Grid.Column="0" Grid.Row="4" BorderBrush="YellowGreen" BorderThickness="1"/>
+        <Border Grid.Column="1" Grid.Row="4" BorderBrush="YellowGreen" BorderThickness="1"/>
+        <Border Grid.Column="2" Grid.Row="4" BorderBrush="YellowGreen" BorderThickness="1"/>
+        <Border Grid.Column="0" Grid.Row="5" BorderBrush="YellowGreen" BorderThickness="1"/>
+        <Border Grid.Column="1" Grid.Row="5" BorderBrush="YellowGreen" BorderThickness="1"/>
+        <Border Grid.Column="2" Grid.Row="5" BorderBrush="YellowGreen" BorderThickness="1"/>
+
+        <TextBlock Grid.Row="0" HorizontalAlignment="Center" Grid.Column="0" Margin="0,0,10,0" Text="Line" />
+        <TextBlock Grid.Row="0" HorizontalAlignment="Center" Grid.Column="1" Margin="0,0,10,0" Text="Direction" />
+        <TextBlock Grid.Row="0" HorizontalAlignment="Center" Grid.Column="2" Margin="0,0,10,0" Text="Schedules" />
+        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Margin="0,0,10,0" Text="A" />
+        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Margin="0,0,10,0" Text="Paris" />
+        <TextBlock Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Margin="0,0,10,0" Text="157" />
+        <TextBlock Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Margin="0,0,10,0" Text="Pt Neuilly" />
+        <TextBlock Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Margin="0,0,10,0" Text="160" />
+        <TextBlock Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Margin="0,0,10,0" Text="Pt Sevres" />
+        <TextBlock Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Margin="0,0,10,0" Text="378" />
+        <TextBlock Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Margin="0,0,10,0" Text="Courtilles/Gare" />
+        <TextBlock Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Margin="0,0,10,0" Text="378" />
+        <TextBlock Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Margin="0,0,10,0" Text="Courtilles/Jules" />
+        <ListBox Name="rer_list" HorizontalAlignment="Center" BorderThickness="0"  Grid.Row="1"  Grid.Column="2">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"/>
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
-
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding message}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox Name="bus157_list" HorizontalAlignment="Center" BorderThickness="0"  Grid.Row="2"  Grid.Column="2">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding message}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox Name="bus160_list" HorizontalAlignment="Center" BorderThickness="0"  Grid.Row="3"  Grid.Column="2">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding message}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox Name="bus378g_list" HorizontalAlignment="Center" BorderThickness="0"  Grid.Row="4"  Grid.Column="2">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding message}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox Name="bus378j_list" HorizontalAlignment="Center" BorderThickness="0"  Grid.Row="5"  Grid.Column="2">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
