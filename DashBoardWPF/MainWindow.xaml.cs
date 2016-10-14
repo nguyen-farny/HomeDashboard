@@ -27,18 +27,11 @@ namespace DashBoardWPF
         public MainWindow()
         {
             InitializeComponent();
-            //DataGridTextColumn schedules_col = new DataGridTextColumn();
-            //schedules_col.Header = "Schedules";
-
-            //rer_grid.Columns.Add(schedules_col);
-
             //actualize info every 2 sec
             System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
             timer.Tick += GetData;
             timer.Interval = new TimeSpan(0, 0, 2);
             timer.Start();
-
-
         }
         private void GetData(object sender, EventArgs e)
         {
@@ -48,47 +41,32 @@ namespace DashBoardWPF
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
-            HttpResponseMessage respRERA = client.GetAsync("rers/A/stations/22?destination=2").Result;
-            HttpResponseMessage respBus157 = client.GetAsync("bus/157/stations/ville-faidherbe-rer?destination=pont+de+neuilly").Result;
-            HttpResponseMessage respBus160 = client.GetAsync("bus/160/stations/nanterre-ville+rer?destination=pont+de+sevres").Result;
-            HttpResponseMessage respBus378g = client.GetAsync("bus/378/stations/nanterre-ville-rer?destination=les+courtilles+metro").Result;
-            HttpResponseMessage respBus378j = client.GetAsync("bus/378/stations/jules+quentin?destination=les+courtilles+metro").Result;
+            var links = new List<string>(System.Configuration.ConfigurationSettings.AppSettings["links"].Split(new char[] { ';' }));
 
-            if (respRERA.IsSuccessStatusCode)
+            for(int i = 0; i < links.Count; i++)
             {
-                var jsonStringRERA = respRERA.Content.ReadAsStringAsync();
-                var jsonStringBus157 = respBus157.Content.ReadAsStringAsync();
-                var jsonStringBus160 = respBus160.Content.ReadAsStringAsync();
-                var jsonStringBus378g = respBus378g.Content.ReadAsStringAsync();
-                var jsonStringBus378j = respBus378j.Content.ReadAsStringAsync();
-
-                jsonStringRERA.Wait();
-                jsonStringBus157.Wait();
-                jsonStringBus160.Wait();
-                jsonStringBus378g.Wait();
-                jsonStringBus378j.Wait();
-
-                dynamic jsonResponseRERA = JsonConvert.DeserializeObject(jsonStringRERA.Result);
-                dynamic jsonResponseBus157 = JsonConvert.DeserializeObject(jsonStringBus157.Result);
-                dynamic jsonResponseBus160 = JsonConvert.DeserializeObject(jsonStringBus160.Result);
-                dynamic jsonResponseBus378g = JsonConvert.DeserializeObject(jsonStringBus378g.Result);
-                dynamic jsonResponseBus378j = JsonConvert.DeserializeObject(jsonStringBus378j.Result);
-
-                rer_list.ItemsSource = jsonResponseRERA.response.schedules;
-                bus157_list.ItemsSource = jsonResponseBus157.response.schedules;
-                bus160_list.ItemsSource = jsonResponseBus160.response.schedules;
-                bus378g_list.ItemsSource = jsonResponseBus378g.response.schedules;
-                bus378j_list.ItemsSource = jsonResponseBus378j.response.schedules;
-            }
-            else
-            {
-                MessageBox.Show("Error Code" + respRERA.StatusCode + " : Message - " + respRERA.ReasonPhrase);
-                MessageBox.Show("Error Code" + respBus157.StatusCode + " : Message - " + respBus157.ReasonPhrase);
-                MessageBox.Show("Error Code" + respBus160.StatusCode + " : Message - " + respBus160.ReasonPhrase);
-                MessageBox.Show("Error Code" + respBus378g.StatusCode + " : Message - " + respBus378g.ReasonPhrase);
-                MessageBox.Show("Error Code" + respBus378j.StatusCode + " : Message - " + respBus378j.ReasonPhrase);
-            }
-
+                HttpResponseMessage resp = client.GetAsync(links[i]).Result;
+                if(resp.IsSuccessStatusCode)
+                {
+                    var jsonString = resp.Content.ReadAsStringAsync();
+                    jsonString.Wait();
+                    dynamic jsonResponse = JsonConvert.DeserializeObject(jsonString.Result);
+                    if (i == 0)
+                        rer_list.ItemsSource = jsonResponse.response.schedules;
+                    else if(i ==1)
+                        bus157_list.ItemsSource = jsonResponse.response.schedules;
+                    else if(i == 2)
+                        bus160_list.ItemsSource = jsonResponse.response.schedules;
+                    else if(i == 3)
+                        bus378g_list.ItemsSource = jsonResponse.response.schedules;
+                    else
+                        bus378j_list.ItemsSource = jsonResponse.response.schedules;
+                }
+                else
+                {
+                    MessageBox.Show("Error Code" + resp.StatusCode + " : Message - " + resp.ReasonPhrase);
+                }
+            }         
         }
     }
 

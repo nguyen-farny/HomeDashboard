@@ -20,9 +20,13 @@
             <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Border Grid.Column="0" BorderBrush="Gray" BorderThickness="1"/>
-        <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="1"/>
-        <Border Grid.Column="2" BorderBrush="Gray" BorderThickness="1"/>
+        <Rectangle Grid.ColumnSpan="3" Fill="Coral" />
+        <Rectangle Grid.Row="1" Grid.ColumnSpan="3" Fill="Beige" />
+        <Rectangle Grid.Row="3" Grid.ColumnSpan="3" Fill="Beige" />
+        <Rectangle Grid.Row="5" Grid.ColumnSpan="3" Fill="Beige" />
+        <Border Grid.Column="0" BorderBrush="White" BorderThickness="1"/>
+        <Border Grid.Column="1" BorderBrush="White" BorderThickness="1"/>
+        <Border Grid.Column="2" BorderBrush="White" BorderThickness="1"/>
         <Border Grid.Column="0" Grid.Row="1" BorderBrush="YellowGreen" BorderThickness="1"/>
         <Border Grid.Column="1" Grid.Row="1" BorderBrush="YellowGreen" BorderThickness="1"/>
         <Border Grid.Column="2" Grid.Row="1" BorderBrush="YellowGreen" BorderThickness="1"/>
@@ -52,7 +56,7 @@
         <TextBlock Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Margin="0,0,10,0" Text="Courtilles/Gare" />
         <TextBlock Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Margin="0,0,10,0" Text="378" />
         <TextBlock Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Margin="0,0,10,0" Text="Courtilles/Jules" />
-        <ListBox Name="rer_list" HorizontalAlignment="Center" BorderThickness="0"  Grid.Row="1"  Grid.Column="2">
+        <ListBox Name="rer_list" HorizontalAlignment="Center" BorderThickness="0"  Grid.Row="1"  Grid.Column="2" Background="Transparent">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"/>
@@ -66,7 +70,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox Name="bus157_list" HorizontalAlignment="Center" BorderThickness="0"  Grid.Row="2"  Grid.Column="2">
+        <ListBox Name="bus157_list" HorizontalAlignment="Center" BorderThickness="0"  Grid.Row="2"  Grid.Column="2" Background="Transparent">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"/>
@@ -80,7 +84,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox Name="bus160_list" HorizontalAlignment="Center" BorderThickness="0"  Grid.Row="3"  Grid.Column="2">
+        <ListBox Name="bus160_list" HorizontalAlignment="Center" BorderThickness="0"  Grid.Row="3"  Grid.Column="2" Background="Transparent">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"/>
@@ -94,7 +98,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox Name="bus378g_list" HorizontalAlignment="Center" BorderThickness="0"  Grid.Row="4"  Grid.Column="2">
+        <ListBox Name="bus378g_list" HorizontalAlignment="Center" BorderThickness="0"  Grid.Row="4"  Grid.Column="2" Background="Transparent">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"/>
@@ -108,7 +112,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox Name="bus378j_list" HorizontalAlignment="Center" BorderThickness="0"  Grid.Row="5"  Grid.Column="2">
+        <ListBox Name="bus378j_list" HorizontalAlignment="Center" BorderThickness="0"  Grid.Row="5"  Grid.Column="2" Background="Transparent">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"/>
