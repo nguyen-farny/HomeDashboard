@@ -14,6 +14,8 @@
             <RowDefinition  Height="40"/>
             <RowDefinition  Height="40"/>
             <RowDefinition  Height="40"/>
+            <RowDefinition  Height="40"/>
+            <RowDefinition  Height="40"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="40"/>
@@ -24,6 +26,8 @@
         <Rectangle Grid.Row="1" Grid.ColumnSpan="3" Fill="Beige" />
         <Rectangle Grid.Row="3" Grid.ColumnSpan="3" Fill="Beige" />
         <Rectangle Grid.Row="5" Grid.ColumnSpan="3" Fill="Beige" />
+        <Rectangle Name="WeatherColor" Grid.Row="7" Grid.ColumnSpan="3" Fill="Gray" />
+
         <Border Grid.Column="0" BorderBrush="White" BorderThickness="1"/>
         <Border Grid.Column="1" BorderBrush="White" BorderThickness="1"/>
         <Border Grid.Column="2" BorderBrush="White" BorderThickness="1"/>
@@ -126,5 +130,44 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <TextBlock 
+        Text="{Binding temp_c}" 
+        Foreground="White"
+        Name="WeatherDegree"
+        Grid.Column="0" Grid.Row="7"
+	    HorizontalAlignment="Stretch"
+	    VerticalAlignment="Center" Height="30" Margin="0,9,0,1" />
+        <Label 
+        Content="°C"
+        Foreground="White"
+        Grid.Column="0" Grid.Row="7"
+	    HorizontalAlignment="Stretch"
+	    VerticalAlignment="Center" Height="30" Margin="10,0,0,1" />
+
+        <TextBlock 
+        Text="{Binding text}" 
+        Foreground="White"
+        Name="Weather"
+        Grid.Column="1" Grid.Row="7"
+	    HorizontalAlignment="Stretch"
+	    VerticalAlignment="Top" Height="30" Margin="0,9,0,0" />
+
+        <Label Foreground="White" Content="VN:" Grid.Column="2" Grid.Row="7" Margin="291,4,0,6" VerticalAlignment="Center" Height="30" RenderTransformOrigin="0.569,0.899" HorizontalAlignment="Left" Width="37"/>
+        <Label Foreground="White" Content="FR:" Grid.Column="2" Grid.Row="7" Margin="395,4,47,6" VerticalAlignment="Center" Height="30"/>
+        <TextBlock 
+        Text="{Binding hourVn}" 
+        Foreground="White"
+        Name="lbl_hourVn"
+        Grid.Column="2" Grid.Row="7"
+	    HorizontalAlignment="Stretch"
+	    VerticalAlignment="Center" Height="30" Margin="327,9,96,1" RenderTransformOrigin="0.694,0.079"/>
+        <TextBlock 
+        Text="{Binding hourFr}" 
+        Foreground="White"
+        Name="lbl_hourFr"
+        Grid.Column="2" Grid.Row="7"
+	    HorizontalAlignment="Stretch"
+	    VerticalAlignment="Center" Height="29" Margin="431,9,0,2" RenderTransformOrigin="0.557,0.14"/>
+
     </Grid>
 </Window>

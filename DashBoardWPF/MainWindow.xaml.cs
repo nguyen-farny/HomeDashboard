@@ -27,11 +27,59 @@ namespace DashBoardWPF
         public MainWindow()
         {
             InitializeComponent();
-            //actualize info every 2 sec
-            System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
-            timer.Tick += GetData;
-            timer.Interval = new TimeSpan(0, 0, 2);
-            timer.Start();
+            //actualize info every 1 day
+            System.Windows.Threading.DispatcherTimer timer1d = new System.Windows.Threading.DispatcherTimer();
+            timer1d.Tick += GetWeather;
+            timer1d.Interval = new TimeSpan(0, 0, 1); //à modifier en 24h
+            timer1d.Start();
+
+            //actualize info every 30 sec
+            System.Windows.Threading.DispatcherTimer timer30s = new System.Windows.Threading.DispatcherTimer();
+            timer30s.Tick += GetData;
+            timer30s.Interval = new TimeSpan(0, 0, 1); //à modifier en 30s
+            timer30s.Start();
+
+            //actualize info every 1 sec
+            System.Windows.Threading.DispatcherTimer timer1s = new System.Windows.Threading.DispatcherTimer();
+            timer1s.Tick += GetHours;
+            timer1s.Interval = new TimeSpan(0, 0, 1);
+            timer1s.Start();
+        }
+
+        private void GetWeather(object sender, EventArgs e)
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("http://api.apixu.com/v1/");
+
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+
+            string link = System.Configuration.ConfigurationSettings.AppSettings["linkWeather"];
+
+            HttpResponseMessage resp = client.GetAsync(link).Result;
+            if (resp.IsSuccessStatusCode)
+            {
+                var jsonString = resp.Content.ReadAsStringAsync();
+                jsonString.Wait();
+                dynamic jsonResponse = JsonConvert.DeserializeObject(jsonString.Result);
+                Weather.DataContext = jsonResponse.current.condition;
+                WeatherDegree.DataContext = jsonResponse.current;
+                if (jsonResponse.current.humidity > 95)
+                    WeatherColor.Fill = new SolidColorBrush(System.Windows.Media.Colors.Brown);
+                else
+                    WeatherColor.Fill = new SolidColorBrush(System.Windows.Media.Colors.OrangeRed);
+
+            }
+            else
+            {
+                MessageBox.Show("Error Code" + resp.StatusCode + " : Message - " + resp.ReasonPhrase);
+            }
+
+        }
+        private void GetHours(object sender, EventArgs e)
+        {
+            lbl_hourFr.DataContext = new Hours();
+            lbl_hourVn.DataContext = new Hours();
         }
         private void GetData(object sender, EventArgs e)
         {
@@ -41,23 +89,23 @@ namespace DashBoardWPF
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
-            var links = new List<string>(System.Configuration.ConfigurationSettings.AppSettings["links"].Split(new char[] { ';' }));
+            var links = new List<string>(System.Configuration.ConfigurationSettings.AppSettings["linksRATP"].Split(new char[] { ';' }));
 
-            for(int i = 0; i < links.Count; i++)
+            for (int i = 0; i < links.Count; i++)
             {
                 HttpResponseMessage resp = client.GetAsync(links[i]).Result;
-                if(resp.IsSuccessStatusCode)
+                if (resp.IsSuccessStatusCode)
                 {
                     var jsonString = resp.Content.ReadAsStringAsync();
                     jsonString.Wait();
                     dynamic jsonResponse = JsonConvert.DeserializeObject(jsonString.Result);
                     if (i == 0)
                         rer_list.ItemsSource = jsonResponse.response.schedules;
-                    else if(i ==1)
+                    else if (i == 1)
                         bus157_list.ItemsSource = jsonResponse.response.schedules;
-                    else if(i == 2)
+                    else if (i == 2)
                         bus160_list.ItemsSource = jsonResponse.response.schedules;
-                    else if(i == 3)
+                    else if (i == 3)
                         bus378g_list.ItemsSource = jsonResponse.response.schedules;
                     else
                         bus378j_list.ItemsSource = jsonResponse.response.schedules;
@@ -66,7 +114,7 @@ namespace DashBoardWPF
                 {
                     MessageBox.Show("Error Code" + resp.StatusCode + " : Message - " + resp.ReasonPhrase);
                 }
-            }         
+            }
         }
     }
 
