@@ -30,7 +30,7 @@ namespace DashBoardWPF
             //actualize info every 1 day
             System.Windows.Threading.DispatcherTimer timer1d = new System.Windows.Threading.DispatcherTimer();
             timer1d.Tick += GetWeather;
-            timer1d.Interval = new TimeSpan(24, 0, 1); //à modifier en 24h
+            timer1d.Interval = new TimeSpan(24, 0, 0); //à modifier en 24h
             timer1d.Start();
 
             //actualize info every 30 sec
@@ -44,6 +44,43 @@ namespace DashBoardWPF
             timer1s.Tick += GetHours;
             timer1s.Interval = new TimeSpan(0, 0, 1);
             timer1s.Start();
+
+            // get data on launch
+            GetWeather(this, new EventArgs());
+            GetData(this, new EventArgs());
+        }
+
+        private void OnGotWeather(HttpResponseMessage resp)
+        {
+            if (resp.IsSuccessStatusCode)
+            {
+                var jsonString = resp.Content.ReadAsStringAsync();
+                jsonString.Wait();
+                dynamic jsonResponse = JsonConvert.DeserializeObject(jsonString.Result);
+        
+                Dispatcher.Invoke(() =>
+                {
+                    Weather.DataContext = jsonResponse.current.condition;
+                    WeatherDegree.DataContext = jsonResponse.current;
+
+                    ImageBrush myBrush = new ImageBrush();
+
+                    if (jsonResponse.current.humidity > 95)
+                    {
+                        myBrush.ImageSource = new BitmapImage(new Uri("../../rain.jpg", UriKind.Relative));
+                        isSunny.Background = myBrush;
+                    }
+                    else
+                    {
+                        myBrush.ImageSource = new BitmapImage(new Uri("../../sunny.jpg", UriKind.Relative));
+                        isSunny.Background = myBrush;
+                    }
+                });
+            }
+            else
+            {
+                Dispatcher.Invoke(() => MessageBox.Show("Error Code" + resp.StatusCode + " : Message - " + resp.ReasonPhrase));
+            }
         }
 
         private void GetWeather(object sender, EventArgs e)
@@ -56,37 +93,9 @@ namespace DashBoardWPF
 
             string link = System.Configuration.ConfigurationSettings.AppSettings["linkWeather"];
 
-            HttpResponseMessage resp = client.GetAsync(link).Result;
-            if (resp.IsSuccessStatusCode)
-            {
-                var jsonString = resp.Content.ReadAsStringAsync();
-                jsonString.Wait();
-                dynamic jsonResponse = JsonConvert.DeserializeObject(jsonString.Result);
-                Weather.DataContext = jsonResponse.current.condition;
-                WeatherDegree.DataContext = jsonResponse.current;
-
-                ImageBrush myBrush = new ImageBrush();
-
-                if (jsonResponse.current.humidity > 95)
-                {
-                    myBrush.ImageSource =
-                new BitmapImage(new Uri("../../rain.jpg", UriKind.Relative));
-                    isSunny.Background = myBrush;
-                }
-
-                else
-                {
-                    myBrush.ImageSource =
-                new BitmapImage(new Uri("../../sunny.jpg", UriKind.Relative));
-                    isSunny.Background = myBrush;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Error Code" + resp.StatusCode + " : Message - " + resp.ReasonPhrase);
-            }
-
+            client.GetAsync(link).ContinueWith(x => OnGotWeather(x.Result));
         }
+
         private void GetHours(object sender, EventArgs e)
         {
             if (!Convert.ToBoolean(System.Configuration.ConfigurationSettings.AppSettings["isVnTime"]))
@@ -94,6 +103,41 @@ namespace DashBoardWPF
             lbl_hourFr.DataContext = new Hours();
             lbl_hourVn.DataContext = new Hours();
         }
+
+        private void OnGotData(HttpResponseMessage resp, int i)
+        {
+            if (resp.IsSuccessStatusCode)
+            {
+                var jsonString = resp.Content.ReadAsStringAsync();
+                jsonString.Wait();
+                dynamic jsonResponse = JsonConvert.DeserializeObject(jsonString.Result);
+
+                foreach (dynamic n in jsonResponse.response.schedules)
+                {
+                    n.message = n.message.ToString().Substring(0, 2);
+                }
+
+                // execute on GUI thread
+                Dispatcher.Invoke(() =>
+                {
+                    if (i == 0)
+                        rer_list.ItemsSource = jsonResponse.response.schedules;
+                    else if (i == 1)
+                        bus157_list.ItemsSource = jsonResponse.response.schedules;
+                    else if (i == 2)
+                        bus160_list.ItemsSource = jsonResponse.response.schedules;
+                    else if (i == 3)
+                        bus378g_list.ItemsSource = jsonResponse.response.schedules;
+                    else
+                        bus378j_list.ItemsSource = jsonResponse.response.schedules;
+                });
+            }
+            else
+            {
+                Dispatcher.Invoke(() => MessageBox.Show("Error Code" + resp.StatusCode + " : Message - " + resp.ReasonPhrase));
+            }
+        }
+
         private void GetData(object sender, EventArgs e)
         {
             HttpClient client = new HttpClient();
@@ -106,33 +150,8 @@ namespace DashBoardWPF
 
             for (int i = 0; i < links.Count; i++)
             {
-                HttpResponseMessage resp = client.GetAsync(links[i]).Result;
-                if (resp.IsSuccessStatusCode)
-                {
-                    var jsonString = resp.Content.ReadAsStringAsync();
-                    jsonString.Wait();
-                    dynamic jsonResponse = JsonConvert.DeserializeObject(jsonString.Result);
-
-                    foreach (dynamic n in jsonResponse.response.schedules)
-                    {
-                        n.message = n.message.ToString().Substring(0, 2);
-                    }
-
-                    if (i == 0)
-                        rer_list.ItemsSource = jsonResponse.response.schedules;
-                    else if (i == 1)
-                        bus157_list.ItemsSource = jsonResponse.response.schedules;
-                    else if (i == 2)
-                        bus160_list.ItemsSource = jsonResponse.response.schedules;
-                    else if (i == 3)
-                        bus378g_list.ItemsSource = jsonResponse.response.schedules;
-                    else
-                        bus378j_list.ItemsSource = jsonResponse.response.schedules;
-                }
-                else
-                {
-                    MessageBox.Show("Error Code" + resp.StatusCode + " : Message - " + resp.ReasonPhrase);
-                }
+                int index = i;
+                client.GetAsync(links[i]).ContinueWith(x => OnGotData(x.Result, index));
             }
         }
     }
