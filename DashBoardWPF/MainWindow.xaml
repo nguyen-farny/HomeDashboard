@@ -5,62 +5,59 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DashBoardWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="650">
-    <Grid Margin="10, 10, 10, 10"  ShowGridLines="False">
+        Title="MainWindow" Height="835" Width="472">
+    <Grid Margin="10, 10, 10, 10" ShowGridLines="False">
         <Grid.RowDefinitions>
-            <RowDefinition  Height="20"/>
             <RowDefinition  Height="40"/>
+            <RowDefinition  Height="80"/>
+            <RowDefinition  Height="80"/>
+            <RowDefinition  Height="80"/>
+            <RowDefinition  Height="80"/>
+            <RowDefinition  Height="80"/>
             <RowDefinition  Height="40"/>
-            <RowDefinition  Height="40"/>
-            <RowDefinition  Height="40"/>
-            <RowDefinition  Height="40"/>
-            <RowDefinition  Height="40"/>
-            <RowDefinition  Height="40"/>
+            <RowDefinition  Height="100"/>
+            <RowDefinition  Height="100"/>
+            <RowDefinition  Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="40"/>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="55"/>
+            <ColumnDefinition Width="152"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Rectangle Grid.ColumnSpan="3" Fill="Coral" />
-        <Rectangle Grid.Row="1" Grid.ColumnSpan="3" Fill="Beige" />
-        <Rectangle Grid.Row="3" Grid.ColumnSpan="3" Fill="Beige" />
-        <Rectangle Grid.Row="5" Grid.ColumnSpan="3" Fill="Beige" />
-        <Rectangle Name="WeatherColor" Grid.Row="7" Grid.ColumnSpan="3" Fill="Gray" />
 
         <Border Grid.Column="0" BorderBrush="White" BorderThickness="1"/>
         <Border Grid.Column="1" BorderBrush="White" BorderThickness="1"/>
         <Border Grid.Column="2" BorderBrush="White" BorderThickness="1"/>
-        <Border Grid.Column="0" Grid.Row="1" BorderBrush="YellowGreen" BorderThickness="1"/>
-        <Border Grid.Column="1" Grid.Row="1" BorderBrush="YellowGreen" BorderThickness="1"/>
-        <Border Grid.Column="2" Grid.Row="1" BorderBrush="YellowGreen" BorderThickness="1"/>
-        <Border Grid.Column="0" Grid.Row="2" BorderBrush="YellowGreen" BorderThickness="1"/>
-        <Border Grid.Column="1" Grid.Row="2" BorderBrush="YellowGreen" BorderThickness="1"/>
-        <Border Grid.Column="2" Grid.Row="2" BorderBrush="YellowGreen" BorderThickness="1"/>
-        <Border Grid.Column="0" Grid.Row="3" BorderBrush="YellowGreen" BorderThickness="1"/>
-        <Border Grid.Column="1" Grid.Row="3" BorderBrush="YellowGreen" BorderThickness="1"/>
-        <Border Grid.Column="2" Grid.Row="3" BorderBrush="YellowGreen" BorderThickness="1"/>
-        <Border Grid.Column="0" Grid.Row="4" BorderBrush="YellowGreen" BorderThickness="1"/>
-        <Border Grid.Column="1" Grid.Row="4" BorderBrush="YellowGreen" BorderThickness="1"/>
-        <Border Grid.Column="2" Grid.Row="4" BorderBrush="YellowGreen" BorderThickness="1"/>
-        <Border Grid.Column="0" Grid.Row="5" BorderBrush="YellowGreen" BorderThickness="1"/>
-        <Border Grid.Column="1" Grid.Row="5" BorderBrush="YellowGreen" BorderThickness="1"/>
-        <Border Grid.Column="2" Grid.Row="5" BorderBrush="YellowGreen" BorderThickness="1"/>
+        <Border Grid.Column="0" Grid.Row="1" BorderBrush="White" BorderThickness="1"/>
+        <Border Grid.Column="1" Grid.Row="1" BorderBrush="White" BorderThickness="1"/>
+        <Border Grid.Column="2" Grid.Row="1" BorderBrush="White" BorderThickness="1"/>
+        <Border Grid.Column="0" Grid.Row="2" BorderBrush="White" BorderThickness="1"/>
+        <Border Grid.Column="1" Grid.Row="2" BorderBrush="White" BorderThickness="1"/>
+        <Border Grid.Column="2" Grid.Row="2" BorderBrush="White" BorderThickness="1"/>
+        <Border Grid.Column="0" Grid.Row="3" BorderBrush="White" BorderThickness="1"/>
+        <Border Grid.Column="1" Grid.Row="3" BorderBrush="White" BorderThickness="1"/>
+        <Border Grid.Column="2" Grid.Row="3" BorderBrush="White" BorderThickness="1" HorizontalAlignment="Right"/>
+        <Border Grid.Column="0" Grid.Row="4" BorderBrush="White" BorderThickness="1"/>
+        <Border Grid.Column="1" Grid.Row="4" BorderBrush="White" BorderThickness="1"/>
+        <Border Grid.Column="2" Grid.Row="4" BorderBrush="White" BorderThickness="1"/>
+        <Border Grid.Column="0" Grid.Row="5" BorderBrush="White" BorderThickness="1"/>
+        <Border Grid.Column="1" Grid.Row="5" BorderBrush="White" BorderThickness="1"/>
+        <Border Grid.Column="2" Grid.Row="5" BorderBrush="White" BorderThickness="1"/>
 
-        <TextBlock Grid.Row="0" HorizontalAlignment="Center" Grid.Column="0" Margin="0,0,10,0" Text="Line" />
-        <TextBlock Grid.Row="0" HorizontalAlignment="Center" Grid.Column="1" Margin="0,0,10,0" Text="Direction" />
-        <TextBlock Grid.Row="0" HorizontalAlignment="Center" Grid.Column="2" Margin="0,0,10,0" Text="Schedules" />
-        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Margin="0,0,10,0" Text="A" />
-        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Margin="0,0,10,0" Text="Paris" />
-        <TextBlock Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Margin="0,0,10,0" Text="157" />
-        <TextBlock Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Margin="0,0,10,0" Text="Pt Neuilly" />
-        <TextBlock Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Margin="0,0,10,0" Text="160" />
-        <TextBlock Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Margin="0,0,10,0" Text="Pt Sevres" />
-        <TextBlock Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Margin="0,0,10,0" Text="378" />
-        <TextBlock Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Margin="0,0,10,0" Text="Courtilles/Gare" />
-        <TextBlock Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Margin="0,0,10,0" Text="378" />
-        <TextBlock Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Margin="0,0,10,0" Text="Courtilles/Jules" />
-        <ListBox Name="rer_list" HorizontalAlignment="Center" BorderThickness="0"  Grid.Row="1"  Grid.Column="2" Background="Transparent">
+        <TextBlock Grid.Row="0" HorizontalAlignment="Center" Grid.Column="0" Margin="0,0,10,0" Text="Line" FontSize="16" VerticalAlignment="Center" FontWeight="Bold" Foreground="Goldenrod"/>
+        <TextBlock Grid.Row="0" HorizontalAlignment="Center" Grid.Column="1" Margin="0,0,10,0" Text="Direction" FontSize="16" VerticalAlignment="Center" FontWeight="Bold" Foreground="Goldenrod"/>
+        <TextBlock Grid.Row="0" HorizontalAlignment="Center" Grid.Column="2" Margin="0,0,10,0" Text="Schedules" FontSize="16" VerticalAlignment="Center" FontWeight="Bold" Foreground="Goldenrod"/>
+        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Margin="0,0,10,0" Text="A" FontSize="24" Foreground="White"/>
+        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Margin="0,0,10,0" Text="Paris" FontSize="24" Foreground="White" />
+        <TextBlock Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Margin="0,0,10,0" Text=" 157" FontSize="24" Foreground="White" />
+        <TextBlock Grid.Row="2" VerticalAlignment="Center" Grid.Column="1" Margin="0,0,10,0" Text="Pt Neuilly" FontSize="24" HorizontalAlignment="Center" Foreground="White"/>
+        <TextBlock Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Margin="0,0,10,0" Text=" 160" FontSize="24" Foreground="White" />
+        <TextBlock Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Margin="0,0,10,0" Text="Pt Sevres" FontSize="24" Foreground="White"/>
+        <TextBlock Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Margin="0,0,10,0" Text=" 378" FontSize="24" Foreground="White"/>
+        <TextBlock Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Margin="0,0,10,0" Text="Courtilles/Ga" FontSize="24" Foreground="White"/>
+        <TextBlock Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Margin="0,0,10,0" Text=" 378" FontSize="24" Foreground="White"/>
+        <TextBlock Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Margin="0,0,10,0" Text="Courtilles/Ju" FontSize="24" Foreground="White"/>
+        <ListBox Name="rer_list" HorizontalAlignment="Center" BorderThickness="0"  Grid.Row="1"  Grid.Column="2" Background="Transparent" Foreground="White">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"/>
@@ -69,12 +66,12 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock Text="{Binding message}" />
+                        <TextBlock Text="{Binding message}" FontSize="36"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox Name="bus157_list" HorizontalAlignment="Center" BorderThickness="0"  Grid.Row="2"  Grid.Column="2" Background="Transparent">
+        <ListBox Name="bus157_list" HorizontalAlignment="Center" BorderThickness="0"  Grid.Row="2"  Grid.Column="2" Background="Transparent" Foreground="White">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"/>
@@ -83,12 +80,12 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock Text="{Binding message}" />
+                        <TextBlock Text="{Binding message}" FontSize="36"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox Name="bus160_list" HorizontalAlignment="Center" BorderThickness="0"  Grid.Row="3"  Grid.Column="2" Background="Transparent">
+        <ListBox Name="bus160_list" HorizontalAlignment="Center" BorderThickness="0"  Grid.Row="3"  Grid.Column="2" Background="Transparent" Foreground="White">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"/>
@@ -97,26 +94,26 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock Text="{Binding message}" />
+                        <TextBlock Text="{Binding message}" FontSize="36"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox Name="bus378g_list" HorizontalAlignment="Center" BorderThickness="0"  Grid.Row="4"  Grid.Column="2" Background="Transparent">
+        <ListBox Name="bus378g_list" HorizontalAlignment="Center" BorderThickness="0"  Grid.Row="4"  Grid.Column="2" Background="Transparent" Foreground="White">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"/>
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
-            <ListBox.ItemTemplate>
+            <ListBox.ItemTemplate >
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock Text="{Binding message}" />
+                        <TextBlock Text="{Binding message}" FontSize="36"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox Name="bus378j_list" HorizontalAlignment="Center" BorderThickness="0"  Grid.Row="5"  Grid.Column="2" Background="Transparent">
+        <ListBox Name="bus378j_list" HorizontalAlignment="Center" BorderThickness="0"  Grid.Row="5"  Grid.Column="2" Background="Transparent" Foreground="White">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"/>
@@ -125,7 +122,7 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock Text="{Binding message}" />
+                        <TextBlock Text="{Binding message}" FontSize="36"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -134,40 +131,39 @@
         Text="{Binding temp_c}" 
         Foreground="White"
         Name="WeatherDegree"
-        Grid.Column="0" Grid.Row="7"
-	    HorizontalAlignment="Stretch"
-	    VerticalAlignment="Center" Height="30" Margin="0,9,0,1" />
+        Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2"
+	    HorizontalAlignment="Center"
+	    VerticalAlignment="Center" FontSize="72"/>
+     
         <Label 
         Content="°C"
         Foreground="White"
-        Grid.Column="0" Grid.Row="7"
-	    HorizontalAlignment="Stretch"
-	    VerticalAlignment="Center" Height="30" Margin="10,0,0,1" />
+        Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2"
+	    HorizontalAlignment="Right"
+	    VerticalAlignment="Bottom" FontSize="48"/>
 
         <TextBlock 
         Text="{Binding text}" 
         Foreground="White"
         Name="Weather"
-        Grid.Column="1" Grid.Row="7"
-	    HorizontalAlignment="Stretch"
-	    VerticalAlignment="Top" Height="30" Margin="0,9,0,0" />
+        Grid.Column="0" Grid.Row="8"  Grid.ColumnSpan="2"
+	    VerticalAlignment="Bottom" HorizontalAlignment="Right"
+	    FontSize="36" Margin="0,0,0,5" />
+        <!--binding text-->
 
-        <Label Foreground="White" Content="VN:" Grid.Column="2" Grid.Row="7" Margin="291,4,0,6" VerticalAlignment="Center" Height="30" RenderTransformOrigin="0.569,0.899" HorizontalAlignment="Left" Width="37"/>
-        <Label Foreground="White" Content="FR:" Grid.Column="2" Grid.Row="7" Margin="395,4,47,6" VerticalAlignment="Center" Height="30"/>
+        <Label Name="Lbl_VnTime" Foreground="Goldenrod" Content=" VN " Grid.Column="2" Grid.Row="7" FontSize="30" VerticalAlignment="Bottom" Margin="0,0,0,2"/>
+        <Label Foreground="Goldenrod" Content=" FR " Grid.Column="2" Grid.Row="8" FontSize="30" VerticalAlignment="Bottom" Margin="0,0,0,2"/>
         <TextBlock 
         Text="{Binding hourVn}" 
-        Foreground="White"
+        Foreground="Goldenrod"
         Name="lbl_hourVn"
-        Grid.Column="2" Grid.Row="7"
-	    HorizontalAlignment="Stretch"
-	    VerticalAlignment="Center" Height="30" Margin="327,9,96,1" RenderTransformOrigin="0.694,0.079"/>
+        Grid.Column="3" Grid.Row="7" FontSize="72" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,5,0"/>
         <TextBlock 
         Text="{Binding hourFr}" 
-        Foreground="White"
+        Foreground="Goldenrod"
         Name="lbl_hourFr"
-        Grid.Column="2" Grid.Row="7"
-	    HorizontalAlignment="Stretch"
-	    VerticalAlignment="Center" Height="29" Margin="431,9,0,2" RenderTransformOrigin="0.557,0.14"/>
+        Grid.Column="2" Grid.Row="8"
+	   HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="72" Margin="0,0,5,0"/>
 
     </Grid>
 </Window>

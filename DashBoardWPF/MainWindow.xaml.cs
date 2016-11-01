@@ -30,13 +30,13 @@ namespace DashBoardWPF
             //actualize info every 1 day
             System.Windows.Threading.DispatcherTimer timer1d = new System.Windows.Threading.DispatcherTimer();
             timer1d.Tick += GetWeather;
-            timer1d.Interval = new TimeSpan(0, 0, 1); //à modifier en 24h
+            timer1d.Interval = new TimeSpan(24, 0, 0); //à modifier en 24h
             timer1d.Start();
 
             //actualize info every 30 sec
             System.Windows.Threading.DispatcherTimer timer30s = new System.Windows.Threading.DispatcherTimer();
             timer30s.Tick += GetData;
-            timer30s.Interval = new TimeSpan(0, 0, 1); //à modifier en 30s
+            timer30s.Interval = new TimeSpan(0, 0, 30); //à modifier en 30s
             timer30s.Start();
 
             //actualize info every 1 sec
@@ -64,11 +64,22 @@ namespace DashBoardWPF
                 dynamic jsonResponse = JsonConvert.DeserializeObject(jsonString.Result);
                 Weather.DataContext = jsonResponse.current.condition;
                 WeatherDegree.DataContext = jsonResponse.current;
-                if (jsonResponse.current.humidity > 95)
-                    WeatherColor.Fill = new SolidColorBrush(System.Windows.Media.Colors.Brown);
-                else
-                    WeatherColor.Fill = new SolidColorBrush(System.Windows.Media.Colors.OrangeRed);
 
+                ImageBrush myBrush = new ImageBrush();
+
+                if (jsonResponse.current.humidity > 95)
+                {
+                    myBrush.ImageSource =
+                new BitmapImage(new Uri("../../rain.jpg", UriKind.Relative));
+                    this.Background = myBrush;
+                }
+
+                else
+                {
+                    myBrush.ImageSource =
+                new BitmapImage(new Uri("../../background-wallpaper-blue-checkbox-texture-web.jpg", UriKind.Relative));
+                    this.Background = myBrush;
+                }
             }
             else
             {
@@ -78,6 +89,8 @@ namespace DashBoardWPF
         }
         private void GetHours(object sender, EventArgs e)
         {
+            if (!Convert.ToBoolean(System.Configuration.ConfigurationSettings.AppSettings["isVnTime"]))
+                Lbl_VnTime.Visibility = Visibility.Hidden;
             lbl_hourFr.DataContext = new Hours();
             lbl_hourVn.DataContext = new Hours();
         }
@@ -99,6 +112,12 @@ namespace DashBoardWPF
                     var jsonString = resp.Content.ReadAsStringAsync();
                     jsonString.Wait();
                     dynamic jsonResponse = JsonConvert.DeserializeObject(jsonString.Result);
+
+                    foreach (dynamic n in jsonResponse.response.schedules)
+                    {
+                        n.message = n.message.ToString().Substring(0, 2);
+                    }
+
                     if (i == 0)
                         rer_list.ItemsSource = jsonResponse.response.schedules;
                     else if (i == 1)
