@@ -30,13 +30,13 @@ namespace DashBoardWPF
             //actualize info every 1 day
             System.Windows.Threading.DispatcherTimer timer1d = new System.Windows.Threading.DispatcherTimer();
             timer1d.Tick += GetWeather;
-            timer1d.Interval = new TimeSpan(0, 0, 1); //à modifier en 24h
+            timer1d.Interval = new TimeSpan(24, 0, 1); //à modifier en 24h
             timer1d.Start();
 
             //actualize info every 30 sec
             System.Windows.Threading.DispatcherTimer timer30s = new System.Windows.Threading.DispatcherTimer();
             timer30s.Tick += GetData;
-            timer30s.Interval = new TimeSpan(0, 0, 1); //à modifier en 30s
+            timer30s.Interval = new TimeSpan(0, 0, 30); //à modifier en 30s
             timer30s.Start();
 
             //actualize info every 1 sec
